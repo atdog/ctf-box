@@ -1,7 +1,6 @@
 FROM phusion/baseimage:latest
 
 # apt-get
-RUN sed -i "s/archive.ubuntu.com/tw.archive.ubuntu.com/g" /etc/apt/sources.list
 RUN apt-add-repository ppa:brightbox/ruby-ng && dpkg --add-architecture i386 && apt-get update && apt-cache showpkg tmux && apt-get install -y \
     build-essential \
     autojump \
