@@ -38,3 +38,5 @@ ADD ssh /root/.ssh
 # dotfiles
 RUN git clone https://github.com/atdog/rcfiles.git ~/.rcfiles && cd ~/.rcfiles && make basic
 
+RUN gem install rubypwn
+
