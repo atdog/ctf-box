@@ -1,7 +1,8 @@
 FROM phusion/baseimage:latest
 
 # apt-get
-RUN apt-add-repository ppa:brightbox/ruby-ng && dpkg --add-architecture i386 && apt-get update && apt-cache showpkg tmux && apt-get install -y \
+#RUN sed -i "s/archive.ubuntu.com/tw.archive.ubuntu.com/g" /etc/apt/sources.list
+RUN dpkg --add-architecture i386 && apt-get update && apt-cache showpkg tmux && apt-get install -y \
     build-essential \
     autojump \
     gcc \
@@ -19,7 +20,6 @@ RUN apt-add-repository ppa:brightbox/ruby-ng && dpkg --add-architecture i386 && 
     python2.7 \
     python2.7-dev \
     python-pip \
-    ruby2.2 \
     wget \
     tmux \
     vim
@@ -37,5 +37,8 @@ ADD ssh /root/.ssh
 # dotfiles
 RUN git clone https://github.com/atdog/rcfiles.git ~/.rcfiles && cd ~/.rcfiles && make basic
 
-RUN gem install rubypwn
-
+# ruby
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && \
+        curl -sSL https://get.rvm.io | bash -s stable
+RUN /usr/local/rvm/bin/rvm install 2.2.0
+RUN /bin/bash -c "source ~/.bashrc && gem install rubypwn"
