@@ -41,4 +41,4 @@ RUN git clone https://github.com/atdog/rcfiles.git ~/.rcfiles && cd ~/.rcfiles &
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && \
         curl -sSL https://get.rvm.io | bash -s stable
 RUN /usr/local/rvm/bin/rvm install 2.2.0
-RUN /bin/bash -c "source ~/.bashrc && gem install rubypwn"
+RUN /bin/bash --login -c "rvm use 2.2.0 --default && gem install rubypwn"
