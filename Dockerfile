@@ -1,7 +1,7 @@
 FROM phusion/baseimage:latest
 
 # apt-get
-#RUN sed -i "s/archive.ubuntu.com/tw.archive.ubuntu.com/g" /etc/apt/sources.list
+RUN sed -i "s/archive.ubuntu.com/tw.archive.ubuntu.com/g" /etc/apt/sources.list
 RUN dpkg --add-architecture i386 && apt-get update && apt-cache showpkg tmux && apt-get install -y \
     build-essential \
     autojump \
@@ -35,7 +35,8 @@ RUN rm -f /etc/service/sshd/down && /etc/my_init.d/00_regen_ssh_host_keys.sh
 ADD ssh /root/.ssh
 
 # dotfiles
-RUN git clone https://github.com/atdog/rcfiles.git ~/.rcfiles && cd ~/.rcfiles && make basic
+RUN touch ~/.bash_history && \
+        git clone https://github.com/atdog/rcfiles.git ~/.rcfiles && cd ~/.rcfiles && make basic
 
 # ruby
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && \
