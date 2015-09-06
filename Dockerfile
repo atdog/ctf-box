@@ -11,6 +11,7 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-cache showpkg tmux && 
     libc6-i386 \
     libc6-dev-i386 \
     libssl-dev \
+    libgmp-dev \
     ltrace \
     strace \
     make \
@@ -42,4 +43,4 @@ RUN touch ~/.bash_history && \
 RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 && \
         curl -sSL https://get.rvm.io | bash -s stable
 RUN /usr/local/rvm/bin/rvm install 2.2.0
-RUN /bin/bash --login -c "rvm use 2.2.0 --default && gem install rubypwn"
+RUN /bin/bash --login -c "rvm use 2.2.0 --default && CONFIGURE_ARGS='--with-static-libstdc++' gem install unf_ext && gem install rubypwn"
