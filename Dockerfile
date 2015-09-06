@@ -12,6 +12,7 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-cache showpkg tmux && 
     libc6-dev-i386 \
     libssl-dev \
     libgmp-dev \
+    libevent-dev \
     ltrace \
     strace \
     make \
@@ -28,6 +29,11 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-cache showpkg tmux && 
 # qira
 RUN cd ~/ && wget -qO- qira.me/dl | unxz | tar x \
     && cd qira && yes | ./install.sh
+
+# tmux 2.0
+RUN cd ~/ && wget -qO- https://github.com/tmux/tmux/releases/download/2.0/tmux-2.0.tar.gz | gunzip | tar x \
+        && cd tmux-2.0 && ./configure && make && make install \
+        && cd ~/ && rm -rf tmux-2.0
 
 # enable ssh
 RUN rm -f /etc/service/sshd/down && /etc/my_init.d/00_regen_ssh_host_keys.sh
