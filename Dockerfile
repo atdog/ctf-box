@@ -13,6 +13,7 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y \
     libssl-dev \
     libgmp-dev \
     libevent-dev \
+    ncurses-dev \
     ltrace \
     strace \
     make \
