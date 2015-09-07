@@ -2,30 +2,32 @@ FROM phusion/baseimage:latest
 
 # apt-get
 #RUN sed -i "s/archive.ubuntu.com/tw.archive.ubuntu.com/g" /etc/apt/sources.list
-RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y \
-    autojump \
-    git \
-    libc6-i386 \
-    libc6-dev-i386 \
-    libssl-dev \
-    libssl-dev:i386 \
-    libgmp-dev \
-    libevent-dev \
-    gcc \
-    gdb \
-    ncurses-dev \
-    ltrace \
-    strace \
-    make \
-    man \
-    nasm \
-    nmap \
-    python2.7 \
-    python2.7-dev \
-    python-pip \
-    wget \
-    build-essential \
-    vim
+RUN dpkg --add-architecture i386 && apt-get update \
+        && apt-get install build-essential -y \
+        && apt-get install -y \
+        autojump \
+        git \
+        libc6-i386 \
+        libc6-dev-i386 \
+        libssl-dev \
+        libssl-dev:i386 \
+        libgmp-dev \
+        libevent-dev \
+        gcc \
+        g++ \
+        gdb \
+        ncurses-dev \
+        ltrace \
+        strace \
+        make \
+        man \
+        nasm \
+        nmap \
+        python2.7 \
+        python2.7-dev \
+        python-pip \
+        wget \
+        vim
 
 # qira
 RUN cd ~/ && wget -qO- qira.me/dl | unxz | tar x \
