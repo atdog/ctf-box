@@ -5,8 +5,6 @@ FROM phusion/baseimage:latest
 RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y \
     build-essential \
     autojump \
-    gcc \
-    gdb \
     git \
     libc6-i386 \
     libc6-dev-i386 \
@@ -14,6 +12,8 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y \
     libssl-dev:i386 \
     libgmp-dev \
     libevent-dev \
+    gcc \
+    gdb \
     ncurses-dev \
     ltrace \
     strace \
