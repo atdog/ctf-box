@@ -11,6 +11,7 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y \
     libc6-i386 \
     libc6-dev-i386 \
     libssl-dev \
+    libssl-dev:i386 \
     libgmp-dev \
     libevent-dev \
     ncurses-dev \
