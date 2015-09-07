@@ -3,7 +3,6 @@ FROM phusion/baseimage:latest
 # apt-get
 #RUN sed -i "s/archive.ubuntu.com/tw.archive.ubuntu.com/g" /etc/apt/sources.list
 RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y \
-    build-essential \
     autojump \
     git \
     libc6-i386 \
@@ -25,7 +24,7 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y \
     python2.7-dev \
     python-pip \
     wget \
-    tmux \
+    build-essential \
     vim
 
 # qira
